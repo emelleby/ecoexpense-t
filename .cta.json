@@ -1,0 +1,28 @@
+{
+  "projectName": "ecoexpense",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "addOnOptions": {
+    "prisma": {
+      "database": "postgres"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "biome",
+    "netlify",
+    "start",
+    "clerk",
+    "prisma",
+    "form",
+    "shadcn",
+    "table",
+    "store",
+    "storybook",
+    "tanstack-query"
+  ]
+}
