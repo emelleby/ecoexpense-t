@@ -1,17 +1,24 @@
-import { PrismaClient } from './generated/prisma/client.js'
+// import { PrismaClient } from './generated/prisma/client.js'
 
-import { PrismaPg } from '@prisma/adapter-pg'
+// import { PrismaPg } from '@prisma/adapter-pg'
 
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
-})
+// const adapter = new PrismaPg({
+//   connectionString: process.env.DATABASE_URL!,
+// })
 
-declare global {
-  var __prisma: PrismaClient | undefined
-}
+// declare global {
+//   var __prisma: PrismaClient | undefined
+// }
 
-export const prisma = globalThis.__prisma || new PrismaClient({ adapter })
+// export const prisma = globalThis.__prisma || new PrismaClient({ adapter })
 
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.__prisma = prisma
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   globalThis.__prisma = prisma
+// }
+
+import { withAccelerate } from "@prisma/extension-accelerate";
+import { PrismaClient } from "./generated/prisma/client.js";
+
+export const prisma = new PrismaClient({
+	accelerateUrl: process.env.DATABASE_URL,
+}).$extends(withAccelerate());
