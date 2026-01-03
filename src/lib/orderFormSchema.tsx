@@ -8,5 +8,7 @@ export const orderFormSchema = z.object({
 	city: z.string().min(1, 'This field is required'),
 	zip: z.string().min(1, 'This field is required'),
 	paymentMethod: z.string().min(1, 'This field is required'),
-	terms: z.boolean(),
+	terms: z.boolean().refine((v) => v === true, {
+		message: 'You must agree to the terms and conditions',
+	}),
 })

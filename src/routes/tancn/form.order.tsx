@@ -116,7 +116,7 @@ export function OrderForm() {
 							)
 						}}
 					</orderForm.AppField>
-					<div className="flex items-center justify-between flex-wrap sm:flex-nowrap w-full gap-2">
+					<div className="flex items-start justify-between flex-wrap sm:flex-nowrap w-full gap-2">
 						<orderForm.AppField name={'firstName'}>
 							{(field) => (
 								<field.FieldSet className="w-full">
@@ -218,7 +218,7 @@ export function OrderForm() {
 							</field.FieldSet>
 						)}
 					</orderForm.AppField>
-					<div className="flex items-center justify-between flex-wrap sm:flex-nowrap w-full gap-2">
+					<div className="flex items-start justify-between flex-wrap sm:flex-nowrap w-full gap-2">
 						<orderForm.AppField name={'city'}>
 							{(field) => (
 								<field.FieldSet className="w-full">
@@ -315,10 +315,12 @@ export function OrderForm() {
 							<field.FieldSet>
 								<field.Field orientation="horizontal">
 									<Checkbox
+										id={field.name}
 										checked={Boolean(field.state.value)}
 										onCheckedChange={(checked) =>
 											field.handleChange(checked as boolean)
 										}
+										onBlur={field.handleBlur}
 										disabled={false}
 										aria-invalid={
 											!!field.state.meta.errors.length &&
