@@ -1,7 +1,37 @@
 import { revalidateLogic } from '@tanstack/react-form'
 import { createFileRoute } from '@tanstack/react-router'
+import { z } from 'zod'
 
 import { useAppForm } from '@/hooks/demo.form'
+
+const addressFormSchema = z.object({
+	fullName: z.string().min(1, 'Full name is required'),
+	email: z.email('Invalid email address'),
+	address: z.object({
+		street: z.string().min(1, 'Street address is required'),
+		city: z.string().min(1, 'City is required'),
+		state: z.string().min(1, 'State is required'),
+		zipCode: z
+			.string()
+			.min(1, 'Zip code is required')
+			.regex(/^\d{5}(-\d{4})?$/, 'Invalid zip code format'),
+		country: z.string().min(1, 'Country is required'),
+	}),
+	phone: z
+		.string()
+		.min(1, 'Phone number is required')
+		.regex(
+			/^(\+\d{1,3})?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
+			'Invalid phone number format',
+		),
+})
+
+function zodValidate<T>(schema: z.ZodType<T>) {
+	return ({ value }: { value: T }) => {
+		const result = schema.safeParse(value)
+		return result.success ? undefined : result.error.issues[0].message
+	}
+}
 
 export const Route = createFileRoute('/demo/form/address')({
 	component: AddressForm,
@@ -52,12 +82,7 @@ function AddressForm() {
 					<form.AppField
 						name="fullName"
 						validators={{
-							onDynamic: ({ value }) => {
-								if (!value || value.trim().length === 0) {
-									return 'Full name is required'
-								}
-								return undefined
-							},
+							onDynamic: zodValidate(addressFormSchema.shape.fullName),
 						}}
 					>
 						{(field) => <field.TextField label="Full Name" />}
@@ -66,15 +91,7 @@ function AddressForm() {
 					<form.AppField
 						name="email"
 						validators={{
-							onDynamic: ({ value }) => {
-								if (!value || value.trim().length === 0) {
-									return 'Email is required'
-								}
-								if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-									return 'Invalid email address'
-								}
-								return undefined
-							},
+							onDynamic: zodValidate(addressFormSchema.shape.email),
 						}}
 					>
 						{(field) => <field.TextField label="Email" />}
@@ -83,12 +100,9 @@ function AddressForm() {
 					<form.AppField
 						name="address.street"
 						validators={{
-							onDynamic: ({ value }) => {
-								if (!value || value.trim().length === 0) {
-									return 'Street address is required'
-								}
-								return undefined
-							},
+							onDynamic: zodValidate(
+								addressFormSchema.shape.address.shape.street,
+							),
 						}}
 					>
 						{(field) => <field.TextField label="Street Address" />}
@@ -98,12 +112,9 @@ function AddressForm() {
 						<form.AppField
 							name="address.city"
 							validators={{
-								onDynamic: ({ value }) => {
-									if (!value || value.trim().length === 0) {
-										return 'City is required'
-									}
-									return undefined
-								},
+								onDynamic: zodValidate(
+									addressFormSchema.shape.address.shape.city,
+								),
 							}}
 						>
 							{(field) => <field.TextField label="City" />}
@@ -111,12 +122,9 @@ function AddressForm() {
 						<form.AppField
 							name="address.state"
 							validators={{
-								onDynamic: ({ value }) => {
-									if (!value || value.trim().length === 0) {
-										return 'State is required'
-									}
-									return undefined
-								},
+								onDynamic: zodValidate(
+									addressFormSchema.shape.address.shape.state,
+								),
 							}}
 						>
 							{(field) => <field.TextField label="State" />}
@@ -124,15 +132,9 @@ function AddressForm() {
 						<form.AppField
 							name="address.zipCode"
 							validators={{
-								onDynamic: ({ value }) => {
-									if (!value || value.trim().length === 0) {
-										return 'Zip code is required'
-									}
-									if (!/^\d{5}(-\d{4})?$/.test(value)) {
-										return 'Invalid zip code format'
-									}
-									return undefined
-								},
+								onDynamic: zodValidate(
+									addressFormSchema.shape.address.shape.zipCode,
+								),
 							}}
 						>
 							{(field) => <field.TextField label="Zip Code" />}
@@ -142,12 +144,9 @@ function AddressForm() {
 					<form.AppField
 						name="address.country"
 						validators={{
-							onDynamic: ({ value }) => {
-								if (!value || value.trim().length === 0) {
-									return 'Country is required'
-								}
-								return undefined
-							},
+							onDynamic: zodValidate(
+								addressFormSchema.shape.address.shape.country,
+							),
 						}}
 					>
 						{(field) => (
@@ -170,19 +169,7 @@ function AddressForm() {
 					<form.AppField
 						name="phone"
 						validators={{
-							onDynamic: ({ value }) => {
-								if (!value || value.trim().length === 0) {
-									return 'Phone number is required'
-								}
-								if (
-									!/^(\+\d{1,3})?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(
-										value,
-									)
-								) {
-									return 'Invalid phone number format'
-								}
-								return undefined
-							},
+							onDynamic: zodValidate(addressFormSchema.shape.phone),
 						}}
 					>
 						{(field) => (
