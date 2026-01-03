@@ -1,4 +1,5 @@
 import { revalidateLogic, useStore } from '@tanstack/react-form'
+import { createFileRoute } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import * as z from 'zod'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -19,6 +20,10 @@ import {
 } from '@/components/ui/select'
 import { useAppForm } from '@/components/ui/tanstack-form'
 import { orderFormSchema } from '@/lib/orderFormSchema'
+
+export const Route = createFileRoute('/tancn/form/order')({
+	component: OrderForm,
+})
 
 export function OrderForm() {
 	const orderForm = useAppForm({
@@ -57,7 +62,7 @@ export function OrderForm() {
 	const isDefault = useStore(orderForm.store, (state) => state.isDefaultValue)
 
 	return (
-		<div>
+		<div className="container mx-auto rounded-lg border mt-4">
 			<orderForm.AppForm>
 				<orderForm.Form>
 					<h1 className="text-3xl font-bold">Place Your Order</h1>

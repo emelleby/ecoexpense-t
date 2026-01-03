@@ -3,10 +3,10 @@ import {
 	createFormHookContexts,
 	revalidateLogic,
 	useStore,
-} from "@tanstack/react-form";
-import type { VariantProps } from "class-variance-authority";
-import * as React from "react";
-import { Button, type buttonVariants } from "@/components/ui/button";
+} from '@tanstack/react-form'
+import type { VariantProps } from 'class-variance-authority'
+import * as React from 'react'
+import { Button, type buttonVariants } from '@/components/ui/button'
 import {
 	Field as DefaultField,
 	FieldError as DefaultFieldError,
@@ -19,21 +19,21 @@ import {
 	FieldSeparator,
 	FieldTitle,
 	type fieldVariants,
-} from "@/components/ui/field";
+} from '@/components/ui/field'
 import {
 	InputGroup,
 	InputGroupAddon,
 	InputGroupInput,
-} from "@/components/ui/input-group";
-import { Spinner } from "@/components/ui/spinner";
-import { cn } from "@/utils/utils";
+} from '@/components/ui/input-group'
+import { Spinner } from '@/components/ui/spinner'
+import { cn } from '@/lib/utils'
 
 const {
 	fieldContext,
 	formContext,
 	useFieldContext: _useFieldContext,
 	useFormContext,
-} = createFormHookContexts();
+} = createFormHookContexts()
 
 const { useAppForm, withForm, withFieldGroup } = createFormHook({
 	fieldContext,
@@ -61,39 +61,39 @@ const { useAppForm, withForm, withFieldGroup } = createFormHook({
 		FieldSeparator,
 		Form,
 	},
-});
+})
 
 type FormItemContextValue = {
-	id: string;
-};
+	id: string
+}
 
 const FormItemContext = React.createContext<FormItemContextValue>(
 	{} as FormItemContextValue,
-);
+)
 
 function FieldSet({
 	className,
 	children,
 	...props
-}: React.ComponentProps<"fieldset">) {
-	const id = React.useId();
+}: React.ComponentProps<'fieldset'>) {
+	const id = React.useId()
 
 	return (
 		<FormItemContext.Provider value={{ id }}>
-			<DefaultFieldSet className={cn("grid gap-1", className)} {...props}>
+			<DefaultFieldSet className={cn('grid gap-1', className)} {...props}>
 				{children}
 			</DefaultFieldSet>
 		</FormItemContext.Provider>
-	);
+	)
 }
 
 const useFieldContext = () => {
-	const { id } = React.useContext(FormItemContext);
-	const { name, store, ...fieldContext } = _useFieldContext();
+	const { id } = React.useContext(FormItemContext)
+	const { name, store, ...fieldContext } = _useFieldContext()
 
-	const errors = useStore(store, (state) => state.meta.errors);
+	const errors = useStore(store, (state) => state.meta.errors)
 	if (!fieldContext) {
-		throw new Error("useFieldContext should be used within <FormItem>");
+		throw new Error('useFieldContext should be used within <FormItem>')
 	}
 
 	return {
@@ -105,72 +105,78 @@ const useFieldContext = () => {
 		errors,
 		store,
 		...fieldContext,
-	};
-};
-
-function Field({
-  children,
-  ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
-  const { errors, formItemId, formDescriptionId, formMessageId, handleBlur, store } =
-    useFieldContext();
-  const isTouched = useStore(store, (state) => state.meta.isTouched);
-  const hasVisibleErrors = !!errors.length && isTouched;
-
-  return (
-    <DefaultField
-      data-invalid={hasVisibleErrors}
-      id={formItemId}
-      onBlur={handleBlur}
-      aria-describedby={
-        !hasVisibleErrors
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
-      aria-invalid={hasVisibleErrors}
-      {...props}
-    >
-      {children}
-    </DefaultField>
-  );
+	}
 }
 
-function FieldError({ className, ...props }: React.ComponentProps<"p">) {
-  const { errors, formMessageId , store } = useFieldContext();
-  const isTouched = useStore(store, (state) => state.meta.isTouched);
-  const body = errors.length ? String(errors.at(0)?.message ?? "") : "";
-  if (!body || !isTouched) return null;
+function Field({
+	children,
+	...props
+}: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants>) {
+	const {
+		errors,
+		formItemId,
+		formDescriptionId,
+		formMessageId,
+		handleBlur,
+		store,
+	} = useFieldContext()
+	const isTouched = useStore(store, (state) => state.meta.isTouched)
+	const hasVisibleErrors = !!errors.length && isTouched
+
+	return (
+		<DefaultField
+			data-invalid={hasVisibleErrors}
+			id={formItemId}
+			onBlur={handleBlur}
+			aria-describedby={
+				!hasVisibleErrors
+					? `${formDescriptionId}`
+					: `${formDescriptionId} ${formMessageId}`
+			}
+			aria-invalid={hasVisibleErrors}
+			{...props}
+		>
+			{children}
+		</DefaultField>
+	)
+}
+
+function FieldError({ className, ...props }: React.ComponentProps<'p'>) {
+	const { errors, formMessageId, store } = useFieldContext()
+	const isTouched = useStore(store, (state) => state.meta.isTouched)
+	const body = errors.length ? String(errors.at(0)?.message ?? '') : ''
+	if (!body || !isTouched) return null
 	return (
 		<DefaultFieldError
 			data-slot="form-message"
 			id={formMessageId}
-			className={cn("text-destructive text-sm", className)}
+			className={cn('text-destructive text-sm', className)}
 			{...props}
 			errors={body ? [{ message: body }] : []}
 		/>
-	);
+	)
 }
 
 function Form({
 	children,
 	...props
-}: Omit<React.ComponentPropsWithoutRef<"form">, "onSubmit" & "noValidate"> & {
-	children?: React.ReactNode;
+}: Omit<React.ComponentPropsWithoutRef<'form'>, 'onSubmit' & 'noValidate'> & {
+	children?: React.ReactNode
 }) {
-	const form = useFormContext();
+	const form = useFormContext()
 	const handleSubmit = React.useCallback(
 		(e: React.FormEvent<HTMLFormElement>) => {
-			e.preventDefault();
-			e.stopPropagation();
-			form.handleSubmit();
+			e.preventDefault()
+			e.stopPropagation()
+			form.handleSubmit()
 		},
 		[form],
-	);
+	)
 	return (
 		<form
 			onSubmit={handleSubmit}
 			className={cn(
-				"flex flex-col p-2 md:p-5 w-full mx-auto gap-2",
+				'flex flex-col p-2 md:p-5 w-full mx-auto gap-2',
 				props.className,
 			)}
 			noValidate
@@ -178,7 +184,7 @@ function Form({
 		>
 			{children}
 		</form>
-	);
+	)
 }
 
 function SubmitButton({
@@ -186,11 +192,11 @@ function SubmitButton({
 	className,
 	size,
 	...props
-}: React.ComponentProps<"button"> &
+}: React.ComponentProps<'button'> &
 	VariantProps<typeof buttonVariants> & {
-		label: string;
+		label: string
 	}) {
-	const form = useFormContext();
+	const form = useFormContext()
 	return (
 		<form.Subscribe selector={(state) => state.isSubmitting}>
 			{(isSubmitting) => (
@@ -206,17 +212,17 @@ function SubmitButton({
 				</Button>
 			)}
 		</form.Subscribe>
-	);
+	)
 }
 
 function StepButton({
 	label,
 	handleMovement,
 	...props
-}: React.ComponentProps<"button"> &
+}: React.ComponentProps<'button'> &
 	VariantProps<typeof buttonVariants> & {
-		label: React.ReactNode | string;
-		handleMovement: () => void;
+		label: React.ReactNode | string
+		handleMovement: () => void
 	}) {
 	return (
 		<Button
@@ -228,7 +234,7 @@ function StepButton({
 		>
 			{label}
 		</Button>
-	);
+	)
 }
 
 export {
@@ -238,4 +244,4 @@ export {
 	useFormContext,
 	withFieldGroup,
 	withForm,
-};
+}
