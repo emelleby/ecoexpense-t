@@ -33,7 +33,7 @@ function zodValidate<T>(schema: z.ZodType<T>) {
 	}
 }
 
-export const Route = createFileRoute('/demo/form/address')({
+export const Route = createFileRoute('/_demoLayout/demo/form/address')({
 	component: AddressForm,
 })
 
@@ -80,7 +80,7 @@ function AddressForm() {
 					className="space-y-6"
 				>
 					<form.AppField
-						name="fullName"
+						name='fullName'
 						validators={{
 							onDynamic: zodValidate(addressFormSchema.shape.fullName),
 						}}
@@ -89,7 +89,7 @@ function AddressForm() {
 					</form.AppField>
 
 					<form.AppField
-						name="email"
+						name='email'
 						validators={{
 							onDynamic: zodValidate(addressFormSchema.shape.email),
 						}}
@@ -110,7 +110,7 @@ function AddressForm() {
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 						<form.AppField
-							name="address.city"
+							name='address.city'
 							validators={{
 								onDynamic: zodValidate(
 									addressFormSchema.shape.address.shape.city,
@@ -120,7 +120,7 @@ function AddressForm() {
 							{(field) => <field.TextField label="City" />}
 						</form.AppField>
 						<form.AppField
-							name="address.state"
+							name='address.state'
 							validators={{
 								onDynamic: zodValidate(
 									addressFormSchema.shape.address.shape.state,
@@ -151,7 +151,7 @@ function AddressForm() {
 					>
 						{(field) => (
 							<field.Select
-								label="Country"
+								label='Country'
 								values={[
 									{ label: 'United States', value: 'US' },
 									{ label: 'Canada', value: 'CA' },
@@ -167,7 +167,7 @@ function AddressForm() {
 					</form.AppField>
 
 					<form.AppField
-						name="phone"
+						name='phone'
 						validators={{
 							onDynamic: zodValidate(addressFormSchema.shape.phone),
 						}}

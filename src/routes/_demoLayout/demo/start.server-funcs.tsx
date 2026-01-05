@@ -45,7 +45,7 @@ const addTodo = createServerFn({ method: 'POST' })
 		return todos
 	})
 
-export const Route = createFileRoute('/demo/start/server-funcs')({
+export const Route = createFileRoute('/_demoLayout/demo/start/server-funcs')({
 	component: Home,
 	loader: async () => await getTodos(),
 })
@@ -84,7 +84,7 @@ function Home() {
 				</ul>
 				<div className="flex flex-col gap-2">
 					<input
-						type="text"
+						type='text'
 						value={todo}
 						onChange={(e) => setTodo(e.target.value)}
 						onKeyDown={(e) => {

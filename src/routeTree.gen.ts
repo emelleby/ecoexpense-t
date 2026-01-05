@@ -9,58 +9,40 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DemoLayoutRouteRouteImport } from './routes/_demoLayout/route'
+import { Route as AppLayoutRouteRouteImport } from './routes/_appLayout/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
-import { Route as DemoTableRouteImport } from './routes/demo/table'
-import { Route as DemoStorybookRouteImport } from './routes/demo/storybook'
-import { Route as DemoStoreRouteImport } from './routes/demo/store'
-import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
-import { Route as DemoClerkRouteImport } from './routes/demo/clerk'
 import { Route as TancnLayoutOrderRouteImport } from './routes/_tancnLayout/order'
-import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
-import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
-import { Route as DemoFormSimpleRouteImport } from './routes/demo/form.simple'
-import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
-import { Route as DemoApiTqTodosRouteImport } from './routes/demo/api.tq-todos'
-import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
-import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
-import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
-import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
-import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
+import { Route as DemoLayoutDemoIndexRouteImport } from './routes/_demoLayout/demo/index'
+import { Route as AppLayoutAppIndexRouteImport } from './routes/_appLayout/app/index'
+import { Route as DemoLayoutDemoTanstackQueryRouteImport } from './routes/_demoLayout/demo/tanstack-query'
+import { Route as DemoLayoutDemoTableRouteImport } from './routes/_demoLayout/demo/table'
+import { Route as DemoLayoutDemoStorybookRouteImport } from './routes/_demoLayout/demo/storybook'
+import { Route as DemoLayoutDemoStoreRouteImport } from './routes/_demoLayout/demo/store'
+import { Route as DemoLayoutDemoPrismaRouteImport } from './routes/_demoLayout/demo/prisma'
+import { Route as DemoLayoutDemoClerkRouteImport } from './routes/_demoLayout/demo/clerk'
+import { Route as DemoLayoutDemoStartServerFuncsRouteImport } from './routes/_demoLayout/demo/start.server-funcs'
+import { Route as DemoLayoutDemoStartApiRequestRouteImport } from './routes/_demoLayout/demo/start.api-request'
+import { Route as DemoLayoutDemoFormSimpleRouteImport } from './routes/_demoLayout/demo/form.simple'
+import { Route as DemoLayoutDemoFormAddressRouteImport } from './routes/_demoLayout/demo/form.address'
+import { Route as DemoLayoutDemoApiTqTodosRouteImport } from './routes/_demoLayout/demo/api.tq-todos'
+import { Route as DemoLayoutDemoApiNamesRouteImport } from './routes/_demoLayout/demo/api.names'
+import { Route as DemoLayoutDemoStartSsrIndexRouteImport } from './routes/_demoLayout/demo/start.ssr.index'
+import { Route as DemoLayoutDemoStartSsrSpaModeRouteImport } from './routes/_demoLayout/demo/start.ssr.spa-mode'
+import { Route as DemoLayoutDemoStartSsrFullSsrRouteImport } from './routes/_demoLayout/demo/start.ssr.full-ssr'
+import { Route as DemoLayoutDemoStartSsrDataOnlyRouteImport } from './routes/_demoLayout/demo/start.ssr.data-only'
 
+const DemoLayoutRouteRoute = DemoLayoutRouteRouteImport.update({
+  id: '/_demoLayout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppLayoutRouteRoute = AppLayoutRouteRouteImport.update({
+  id: '/_appLayout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
-  id: '/demo/tanstack-query',
-  path: '/demo/tanstack-query',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoTableRoute = DemoTableRouteImport.update({
-  id: '/demo/table',
-  path: '/demo/table',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStorybookRoute = DemoStorybookRouteImport.update({
-  id: '/demo/storybook',
-  path: '/demo/storybook',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStoreRoute = DemoStoreRouteImport.update({
-  id: '/demo/store',
-  path: '/demo/store',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoPrismaRoute = DemoPrismaRouteImport.update({
-  id: '/demo/prisma',
-  path: '/demo/prisma',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoClerkRoute = DemoClerkRouteImport.update({
-  id: '/demo/clerk',
-  path: '/demo/clerk',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TancnLayoutOrderRoute = TancnLayoutOrderRouteImport.update({
@@ -68,117 +50,175 @@ const TancnLayoutOrderRoute = TancnLayoutOrderRouteImport.update({
   path: '/order',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
-  id: '/demo/start/server-funcs',
-  path: '/demo/start/server-funcs',
-  getParentRoute: () => rootRouteImport,
+const DemoLayoutDemoIndexRoute = DemoLayoutDemoIndexRouteImport.update({
+  id: '/demo/',
+  path: '/demo/',
+  getParentRoute: () => DemoLayoutRouteRoute,
 } as any)
-const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: '/demo/start/api-request',
-  path: '/demo/start/api-request',
-  getParentRoute: () => rootRouteImport,
+const AppLayoutAppIndexRoute = AppLayoutAppIndexRouteImport.update({
+  id: '/app/',
+  path: '/app/',
+  getParentRoute: () => AppLayoutRouteRoute,
 } as any)
-const DemoFormSimpleRoute = DemoFormSimpleRouteImport.update({
-  id: '/demo/form/simple',
-  path: '/demo/form/simple',
-  getParentRoute: () => rootRouteImport,
+const DemoLayoutDemoTanstackQueryRoute =
+  DemoLayoutDemoTanstackQueryRouteImport.update({
+    id: '/demo/tanstack-query',
+    path: '/demo/tanstack-query',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoTableRoute = DemoLayoutDemoTableRouteImport.update({
+  id: '/demo/table',
+  path: '/demo/table',
+  getParentRoute: () => DemoLayoutRouteRoute,
 } as any)
-const DemoFormAddressRoute = DemoFormAddressRouteImport.update({
-  id: '/demo/form/address',
-  path: '/demo/form/address',
-  getParentRoute: () => rootRouteImport,
+const DemoLayoutDemoStorybookRoute = DemoLayoutDemoStorybookRouteImport.update({
+  id: '/demo/storybook',
+  path: '/demo/storybook',
+  getParentRoute: () => DemoLayoutRouteRoute,
 } as any)
-const DemoApiTqTodosRoute = DemoApiTqTodosRouteImport.update({
-  id: '/demo/api/tq-todos',
-  path: '/demo/api/tq-todos',
-  getParentRoute: () => rootRouteImport,
+const DemoLayoutDemoStoreRoute = DemoLayoutDemoStoreRouteImport.update({
+  id: '/demo/store',
+  path: '/demo/store',
+  getParentRoute: () => DemoLayoutRouteRoute,
 } as any)
-const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
+const DemoLayoutDemoPrismaRoute = DemoLayoutDemoPrismaRouteImport.update({
+  id: '/demo/prisma',
+  path: '/demo/prisma',
+  getParentRoute: () => DemoLayoutRouteRoute,
+} as any)
+const DemoLayoutDemoClerkRoute = DemoLayoutDemoClerkRouteImport.update({
+  id: '/demo/clerk',
+  path: '/demo/clerk',
+  getParentRoute: () => DemoLayoutRouteRoute,
+} as any)
+const DemoLayoutDemoStartServerFuncsRoute =
+  DemoLayoutDemoStartServerFuncsRouteImport.update({
+    id: '/demo/start/server-funcs',
+    path: '/demo/start/server-funcs',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoStartApiRequestRoute =
+  DemoLayoutDemoStartApiRequestRouteImport.update({
+    id: '/demo/start/api-request',
+    path: '/demo/start/api-request',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoFormSimpleRoute =
+  DemoLayoutDemoFormSimpleRouteImport.update({
+    id: '/demo/form/simple',
+    path: '/demo/form/simple',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoFormAddressRoute =
+  DemoLayoutDemoFormAddressRouteImport.update({
+    id: '/demo/form/address',
+    path: '/demo/form/address',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoApiTqTodosRoute =
+  DemoLayoutDemoApiTqTodosRouteImport.update({
+    id: '/demo/api/tq-todos',
+    path: '/demo/api/tq-todos',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoApiNamesRoute = DemoLayoutDemoApiNamesRouteImport.update({
   id: '/demo/api/names',
   path: '/demo/api/names',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => DemoLayoutRouteRoute,
 } as any)
-const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
-  id: '/demo/start/ssr/',
-  path: '/demo/start/ssr/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartSsrSpaModeRoute = DemoStartSsrSpaModeRouteImport.update({
-  id: '/demo/start/ssr/spa-mode',
-  path: '/demo/start/ssr/spa-mode',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartSsrFullSsrRoute = DemoStartSsrFullSsrRouteImport.update({
-  id: '/demo/start/ssr/full-ssr',
-  path: '/demo/start/ssr/full-ssr',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
-  id: '/demo/start/ssr/data-only',
-  path: '/demo/start/ssr/data-only',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const DemoLayoutDemoStartSsrIndexRoute =
+  DemoLayoutDemoStartSsrIndexRouteImport.update({
+    id: '/demo/start/ssr/',
+    path: '/demo/start/ssr/',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoStartSsrSpaModeRoute =
+  DemoLayoutDemoStartSsrSpaModeRouteImport.update({
+    id: '/demo/start/ssr/spa-mode',
+    path: '/demo/start/ssr/spa-mode',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoStartSsrFullSsrRoute =
+  DemoLayoutDemoStartSsrFullSsrRouteImport.update({
+    id: '/demo/start/ssr/full-ssr',
+    path: '/demo/start/ssr/full-ssr',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
+const DemoLayoutDemoStartSsrDataOnlyRoute =
+  DemoLayoutDemoStartSsrDataOnlyRouteImport.update({
+    id: '/demo/start/ssr/data-only',
+    path: '/demo/start/ssr/data-only',
+    getParentRoute: () => DemoLayoutRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/order': typeof TancnLayoutOrderRoute
-  '/demo/clerk': typeof DemoClerkRoute
-  '/demo/prisma': typeof DemoPrismaRoute
-  '/demo/store': typeof DemoStoreRoute
-  '/demo/storybook': typeof DemoStorybookRoute
-  '/demo/table': typeof DemoTableRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
-  '/demo/form/address': typeof DemoFormAddressRoute
-  '/demo/form/simple': typeof DemoFormSimpleRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
-  '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/demo/clerk': typeof DemoLayoutDemoClerkRoute
+  '/demo/prisma': typeof DemoLayoutDemoPrismaRoute
+  '/demo/store': typeof DemoLayoutDemoStoreRoute
+  '/demo/storybook': typeof DemoLayoutDemoStorybookRoute
+  '/demo/table': typeof DemoLayoutDemoTableRoute
+  '/demo/tanstack-query': typeof DemoLayoutDemoTanstackQueryRoute
+  '/app': typeof AppLayoutAppIndexRoute
+  '/demo': typeof DemoLayoutDemoIndexRoute
+  '/demo/api/names': typeof DemoLayoutDemoApiNamesRoute
+  '/demo/api/tq-todos': typeof DemoLayoutDemoApiTqTodosRoute
+  '/demo/form/address': typeof DemoLayoutDemoFormAddressRoute
+  '/demo/form/simple': typeof DemoLayoutDemoFormSimpleRoute
+  '/demo/start/api-request': typeof DemoLayoutDemoStartApiRequestRoute
+  '/demo/start/server-funcs': typeof DemoLayoutDemoStartServerFuncsRoute
+  '/demo/start/ssr/data-only': typeof DemoLayoutDemoStartSsrDataOnlyRoute
+  '/demo/start/ssr/full-ssr': typeof DemoLayoutDemoStartSsrFullSsrRoute
+  '/demo/start/ssr/spa-mode': typeof DemoLayoutDemoStartSsrSpaModeRoute
+  '/demo/start/ssr': typeof DemoLayoutDemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/order': typeof TancnLayoutOrderRoute
-  '/demo/clerk': typeof DemoClerkRoute
-  '/demo/prisma': typeof DemoPrismaRoute
-  '/demo/store': typeof DemoStoreRoute
-  '/demo/storybook': typeof DemoStorybookRoute
-  '/demo/table': typeof DemoTableRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
-  '/demo/form/address': typeof DemoFormAddressRoute
-  '/demo/form/simple': typeof DemoFormSimpleRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
-  '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/demo/clerk': typeof DemoLayoutDemoClerkRoute
+  '/demo/prisma': typeof DemoLayoutDemoPrismaRoute
+  '/demo/store': typeof DemoLayoutDemoStoreRoute
+  '/demo/storybook': typeof DemoLayoutDemoStorybookRoute
+  '/demo/table': typeof DemoLayoutDemoTableRoute
+  '/demo/tanstack-query': typeof DemoLayoutDemoTanstackQueryRoute
+  '/app': typeof AppLayoutAppIndexRoute
+  '/demo': typeof DemoLayoutDemoIndexRoute
+  '/demo/api/names': typeof DemoLayoutDemoApiNamesRoute
+  '/demo/api/tq-todos': typeof DemoLayoutDemoApiTqTodosRoute
+  '/demo/form/address': typeof DemoLayoutDemoFormAddressRoute
+  '/demo/form/simple': typeof DemoLayoutDemoFormSimpleRoute
+  '/demo/start/api-request': typeof DemoLayoutDemoStartApiRequestRoute
+  '/demo/start/server-funcs': typeof DemoLayoutDemoStartServerFuncsRoute
+  '/demo/start/ssr/data-only': typeof DemoLayoutDemoStartSsrDataOnlyRoute
+  '/demo/start/ssr/full-ssr': typeof DemoLayoutDemoStartSsrFullSsrRoute
+  '/demo/start/ssr/spa-mode': typeof DemoLayoutDemoStartSsrSpaModeRoute
+  '/demo/start/ssr': typeof DemoLayoutDemoStartSsrIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_appLayout': typeof AppLayoutRouteRouteWithChildren
+  '/_demoLayout': typeof DemoLayoutRouteRouteWithChildren
   '/_tancnLayout/order': typeof TancnLayoutOrderRoute
-  '/demo/clerk': typeof DemoClerkRoute
-  '/demo/prisma': typeof DemoPrismaRoute
-  '/demo/store': typeof DemoStoreRoute
-  '/demo/storybook': typeof DemoStorybookRoute
-  '/demo/table': typeof DemoTableRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
-  '/demo/form/address': typeof DemoFormAddressRoute
-  '/demo/form/simple': typeof DemoFormSimpleRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
-  '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
+  '/_demoLayout/demo/clerk': typeof DemoLayoutDemoClerkRoute
+  '/_demoLayout/demo/prisma': typeof DemoLayoutDemoPrismaRoute
+  '/_demoLayout/demo/store': typeof DemoLayoutDemoStoreRoute
+  '/_demoLayout/demo/storybook': typeof DemoLayoutDemoStorybookRoute
+  '/_demoLayout/demo/table': typeof DemoLayoutDemoTableRoute
+  '/_demoLayout/demo/tanstack-query': typeof DemoLayoutDemoTanstackQueryRoute
+  '/_appLayout/app/': typeof AppLayoutAppIndexRoute
+  '/_demoLayout/demo/': typeof DemoLayoutDemoIndexRoute
+  '/_demoLayout/demo/api/names': typeof DemoLayoutDemoApiNamesRoute
+  '/_demoLayout/demo/api/tq-todos': typeof DemoLayoutDemoApiTqTodosRoute
+  '/_demoLayout/demo/form/address': typeof DemoLayoutDemoFormAddressRoute
+  '/_demoLayout/demo/form/simple': typeof DemoLayoutDemoFormSimpleRoute
+  '/_demoLayout/demo/start/api-request': typeof DemoLayoutDemoStartApiRequestRoute
+  '/_demoLayout/demo/start/server-funcs': typeof DemoLayoutDemoStartServerFuncsRoute
+  '/_demoLayout/demo/start/ssr/data-only': typeof DemoLayoutDemoStartSsrDataOnlyRoute
+  '/_demoLayout/demo/start/ssr/full-ssr': typeof DemoLayoutDemoStartSsrFullSsrRoute
+  '/_demoLayout/demo/start/ssr/spa-mode': typeof DemoLayoutDemoStartSsrSpaModeRoute
+  '/_demoLayout/demo/start/ssr/': typeof DemoLayoutDemoStartSsrIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -191,6 +231,8 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/app'
+    | '/demo'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
@@ -211,6 +253,8 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/app'
+    | '/demo'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
@@ -224,95 +268,57 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_appLayout'
+    | '/_demoLayout'
     | '/_tancnLayout/order'
-    | '/demo/clerk'
-    | '/demo/prisma'
-    | '/demo/store'
-    | '/demo/storybook'
-    | '/demo/table'
-    | '/demo/tanstack-query'
-    | '/demo/api/names'
-    | '/demo/api/tq-todos'
-    | '/demo/form/address'
-    | '/demo/form/simple'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
-    | '/demo/start/ssr/'
+    | '/_demoLayout/demo/clerk'
+    | '/_demoLayout/demo/prisma'
+    | '/_demoLayout/demo/store'
+    | '/_demoLayout/demo/storybook'
+    | '/_demoLayout/demo/table'
+    | '/_demoLayout/demo/tanstack-query'
+    | '/_appLayout/app/'
+    | '/_demoLayout/demo/'
+    | '/_demoLayout/demo/api/names'
+    | '/_demoLayout/demo/api/tq-todos'
+    | '/_demoLayout/demo/form/address'
+    | '/_demoLayout/demo/form/simple'
+    | '/_demoLayout/demo/start/api-request'
+    | '/_demoLayout/demo/start/server-funcs'
+    | '/_demoLayout/demo/start/ssr/data-only'
+    | '/_demoLayout/demo/start/ssr/full-ssr'
+    | '/_demoLayout/demo/start/ssr/spa-mode'
+    | '/_demoLayout/demo/start/ssr/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppLayoutRouteRoute: typeof AppLayoutRouteRouteWithChildren
+  DemoLayoutRouteRoute: typeof DemoLayoutRouteRouteWithChildren
   TancnLayoutOrderRoute: typeof TancnLayoutOrderRoute
-  DemoClerkRoute: typeof DemoClerkRoute
-  DemoPrismaRoute: typeof DemoPrismaRoute
-  DemoStoreRoute: typeof DemoStoreRoute
-  DemoStorybookRoute: typeof DemoStorybookRoute
-  DemoTableRoute: typeof DemoTableRoute
-  DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  DemoApiNamesRoute: typeof DemoApiNamesRoute
-  DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
-  DemoFormAddressRoute: typeof DemoFormAddressRoute
-  DemoFormSimpleRoute: typeof DemoFormSimpleRoute
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
-  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
-  DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
-  DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
-  DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
-  DemoStartSsrIndexRoute: typeof DemoStartSsrIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_demoLayout': {
+      id: '/_demoLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof DemoLayoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_appLayout': {
+      id: '/_appLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppLayoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/tanstack-query': {
-      id: '/demo/tanstack-query'
-      path: '/demo/tanstack-query'
-      fullPath: '/demo/tanstack-query'
-      preLoaderRoute: typeof DemoTanstackQueryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/table': {
-      id: '/demo/table'
-      path: '/demo/table'
-      fullPath: '/demo/table'
-      preLoaderRoute: typeof DemoTableRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/storybook': {
-      id: '/demo/storybook'
-      path: '/demo/storybook'
-      fullPath: '/demo/storybook'
-      preLoaderRoute: typeof DemoStorybookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/store': {
-      id: '/demo/store'
-      path: '/demo/store'
-      fullPath: '/demo/store'
-      preLoaderRoute: typeof DemoStoreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/prisma': {
-      id: '/demo/prisma'
-      path: '/demo/prisma'
-      fullPath: '/demo/prisma'
-      preLoaderRoute: typeof DemoPrismaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/clerk': {
-      id: '/demo/clerk'
-      path: '/demo/clerk'
-      fullPath: '/demo/clerk'
-      preLoaderRoute: typeof DemoClerkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_tancnLayout/order': {
@@ -322,98 +328,196 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TancnLayoutOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/server-funcs': {
-      id: '/demo/start/server-funcs'
+    '/_demoLayout/demo/': {
+      id: '/_demoLayout/demo/'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoLayoutDemoIndexRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_appLayout/app/': {
+      id: '/_appLayout/app/'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppLayoutAppIndexRouteImport
+      parentRoute: typeof AppLayoutRouteRoute
+    }
+    '/_demoLayout/demo/tanstack-query': {
+      id: '/_demoLayout/demo/tanstack-query'
+      path: '/demo/tanstack-query'
+      fullPath: '/demo/tanstack-query'
+      preLoaderRoute: typeof DemoLayoutDemoTanstackQueryRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_demoLayout/demo/table': {
+      id: '/_demoLayout/demo/table'
+      path: '/demo/table'
+      fullPath: '/demo/table'
+      preLoaderRoute: typeof DemoLayoutDemoTableRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_demoLayout/demo/storybook': {
+      id: '/_demoLayout/demo/storybook'
+      path: '/demo/storybook'
+      fullPath: '/demo/storybook'
+      preLoaderRoute: typeof DemoLayoutDemoStorybookRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_demoLayout/demo/store': {
+      id: '/_demoLayout/demo/store'
+      path: '/demo/store'
+      fullPath: '/demo/store'
+      preLoaderRoute: typeof DemoLayoutDemoStoreRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_demoLayout/demo/prisma': {
+      id: '/_demoLayout/demo/prisma'
+      path: '/demo/prisma'
+      fullPath: '/demo/prisma'
+      preLoaderRoute: typeof DemoLayoutDemoPrismaRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_demoLayout/demo/clerk': {
+      id: '/_demoLayout/demo/clerk'
+      path: '/demo/clerk'
+      fullPath: '/demo/clerk'
+      preLoaderRoute: typeof DemoLayoutDemoClerkRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
+    }
+    '/_demoLayout/demo/start/server-funcs': {
+      id: '/_demoLayout/demo/start/server-funcs'
       path: '/demo/start/server-funcs'
       fullPath: '/demo/start/server-funcs'
-      preLoaderRoute: typeof DemoStartServerFuncsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoStartServerFuncsRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/start/api-request': {
-      id: '/demo/start/api-request'
+    '/_demoLayout/demo/start/api-request': {
+      id: '/_demoLayout/demo/start/api-request'
       path: '/demo/start/api-request'
       fullPath: '/demo/start/api-request'
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoStartApiRequestRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/form/simple': {
-      id: '/demo/form/simple'
+    '/_demoLayout/demo/form/simple': {
+      id: '/_demoLayout/demo/form/simple'
       path: '/demo/form/simple'
       fullPath: '/demo/form/simple'
-      preLoaderRoute: typeof DemoFormSimpleRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoFormSimpleRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/form/address': {
-      id: '/demo/form/address'
+    '/_demoLayout/demo/form/address': {
+      id: '/_demoLayout/demo/form/address'
       path: '/demo/form/address'
       fullPath: '/demo/form/address'
-      preLoaderRoute: typeof DemoFormAddressRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoFormAddressRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/api/tq-todos': {
-      id: '/demo/api/tq-todos'
+    '/_demoLayout/demo/api/tq-todos': {
+      id: '/_demoLayout/demo/api/tq-todos'
       path: '/demo/api/tq-todos'
       fullPath: '/demo/api/tq-todos'
-      preLoaderRoute: typeof DemoApiTqTodosRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoApiTqTodosRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/api/names': {
-      id: '/demo/api/names'
+    '/_demoLayout/demo/api/names': {
+      id: '/_demoLayout/demo/api/names'
       path: '/demo/api/names'
       fullPath: '/demo/api/names'
-      preLoaderRoute: typeof DemoApiNamesRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoApiNamesRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/start/ssr/': {
-      id: '/demo/start/ssr/'
+    '/_demoLayout/demo/start/ssr/': {
+      id: '/_demoLayout/demo/start/ssr/'
       path: '/demo/start/ssr'
       fullPath: '/demo/start/ssr'
-      preLoaderRoute: typeof DemoStartSsrIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoStartSsrIndexRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/start/ssr/spa-mode': {
-      id: '/demo/start/ssr/spa-mode'
+    '/_demoLayout/demo/start/ssr/spa-mode': {
+      id: '/_demoLayout/demo/start/ssr/spa-mode'
       path: '/demo/start/ssr/spa-mode'
       fullPath: '/demo/start/ssr/spa-mode'
-      preLoaderRoute: typeof DemoStartSsrSpaModeRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoStartSsrSpaModeRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/start/ssr/full-ssr': {
-      id: '/demo/start/ssr/full-ssr'
+    '/_demoLayout/demo/start/ssr/full-ssr': {
+      id: '/_demoLayout/demo/start/ssr/full-ssr'
       path: '/demo/start/ssr/full-ssr'
       fullPath: '/demo/start/ssr/full-ssr'
-      preLoaderRoute: typeof DemoStartSsrFullSsrRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoStartSsrFullSsrRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
-    '/demo/start/ssr/data-only': {
-      id: '/demo/start/ssr/data-only'
+    '/_demoLayout/demo/start/ssr/data-only': {
+      id: '/_demoLayout/demo/start/ssr/data-only'
       path: '/demo/start/ssr/data-only'
       fullPath: '/demo/start/ssr/data-only'
-      preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DemoLayoutDemoStartSsrDataOnlyRouteImport
+      parentRoute: typeof DemoLayoutRouteRoute
     }
   }
 }
 
+interface AppLayoutRouteRouteChildren {
+  AppLayoutAppIndexRoute: typeof AppLayoutAppIndexRoute
+}
+
+const AppLayoutRouteRouteChildren: AppLayoutRouteRouteChildren = {
+  AppLayoutAppIndexRoute: AppLayoutAppIndexRoute,
+}
+
+const AppLayoutRouteRouteWithChildren = AppLayoutRouteRoute._addFileChildren(
+  AppLayoutRouteRouteChildren,
+)
+
+interface DemoLayoutRouteRouteChildren {
+  DemoLayoutDemoClerkRoute: typeof DemoLayoutDemoClerkRoute
+  DemoLayoutDemoPrismaRoute: typeof DemoLayoutDemoPrismaRoute
+  DemoLayoutDemoStoreRoute: typeof DemoLayoutDemoStoreRoute
+  DemoLayoutDemoStorybookRoute: typeof DemoLayoutDemoStorybookRoute
+  DemoLayoutDemoTableRoute: typeof DemoLayoutDemoTableRoute
+  DemoLayoutDemoTanstackQueryRoute: typeof DemoLayoutDemoTanstackQueryRoute
+  DemoLayoutDemoIndexRoute: typeof DemoLayoutDemoIndexRoute
+  DemoLayoutDemoApiNamesRoute: typeof DemoLayoutDemoApiNamesRoute
+  DemoLayoutDemoApiTqTodosRoute: typeof DemoLayoutDemoApiTqTodosRoute
+  DemoLayoutDemoFormAddressRoute: typeof DemoLayoutDemoFormAddressRoute
+  DemoLayoutDemoFormSimpleRoute: typeof DemoLayoutDemoFormSimpleRoute
+  DemoLayoutDemoStartApiRequestRoute: typeof DemoLayoutDemoStartApiRequestRoute
+  DemoLayoutDemoStartServerFuncsRoute: typeof DemoLayoutDemoStartServerFuncsRoute
+  DemoLayoutDemoStartSsrDataOnlyRoute: typeof DemoLayoutDemoStartSsrDataOnlyRoute
+  DemoLayoutDemoStartSsrFullSsrRoute: typeof DemoLayoutDemoStartSsrFullSsrRoute
+  DemoLayoutDemoStartSsrSpaModeRoute: typeof DemoLayoutDemoStartSsrSpaModeRoute
+  DemoLayoutDemoStartSsrIndexRoute: typeof DemoLayoutDemoStartSsrIndexRoute
+}
+
+const DemoLayoutRouteRouteChildren: DemoLayoutRouteRouteChildren = {
+  DemoLayoutDemoClerkRoute: DemoLayoutDemoClerkRoute,
+  DemoLayoutDemoPrismaRoute: DemoLayoutDemoPrismaRoute,
+  DemoLayoutDemoStoreRoute: DemoLayoutDemoStoreRoute,
+  DemoLayoutDemoStorybookRoute: DemoLayoutDemoStorybookRoute,
+  DemoLayoutDemoTableRoute: DemoLayoutDemoTableRoute,
+  DemoLayoutDemoTanstackQueryRoute: DemoLayoutDemoTanstackQueryRoute,
+  DemoLayoutDemoIndexRoute: DemoLayoutDemoIndexRoute,
+  DemoLayoutDemoApiNamesRoute: DemoLayoutDemoApiNamesRoute,
+  DemoLayoutDemoApiTqTodosRoute: DemoLayoutDemoApiTqTodosRoute,
+  DemoLayoutDemoFormAddressRoute: DemoLayoutDemoFormAddressRoute,
+  DemoLayoutDemoFormSimpleRoute: DemoLayoutDemoFormSimpleRoute,
+  DemoLayoutDemoStartApiRequestRoute: DemoLayoutDemoStartApiRequestRoute,
+  DemoLayoutDemoStartServerFuncsRoute: DemoLayoutDemoStartServerFuncsRoute,
+  DemoLayoutDemoStartSsrDataOnlyRoute: DemoLayoutDemoStartSsrDataOnlyRoute,
+  DemoLayoutDemoStartSsrFullSsrRoute: DemoLayoutDemoStartSsrFullSsrRoute,
+  DemoLayoutDemoStartSsrSpaModeRoute: DemoLayoutDemoStartSsrSpaModeRoute,
+  DemoLayoutDemoStartSsrIndexRoute: DemoLayoutDemoStartSsrIndexRoute,
+}
+
+const DemoLayoutRouteRouteWithChildren = DemoLayoutRouteRoute._addFileChildren(
+  DemoLayoutRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppLayoutRouteRoute: AppLayoutRouteRouteWithChildren,
+  DemoLayoutRouteRoute: DemoLayoutRouteRouteWithChildren,
   TancnLayoutOrderRoute: TancnLayoutOrderRoute,
-  DemoClerkRoute: DemoClerkRoute,
-  DemoPrismaRoute: DemoPrismaRoute,
-  DemoStoreRoute: DemoStoreRoute,
-  DemoStorybookRoute: DemoStorybookRoute,
-  DemoTableRoute: DemoTableRoute,
-  DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  DemoApiNamesRoute: DemoApiNamesRoute,
-  DemoApiTqTodosRoute: DemoApiTqTodosRoute,
-  DemoFormAddressRoute: DemoFormAddressRoute,
-  DemoFormSimpleRoute: DemoFormSimpleRoute,
-  DemoStartApiRequestRoute: DemoStartApiRequestRoute,
-  DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
-  DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
-  DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
-  DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
-  DemoStartSsrIndexRoute: DemoStartSsrIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

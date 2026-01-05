@@ -20,7 +20,7 @@ const createTodo = createServerFn({
 		})
 	})
 
-export const Route = createFileRoute('/demo/prisma')({
+export const Route = createFileRoute('/_demoLayout/demo/prisma')({
 	component: DemoPrisma,
 	loader: async () => await getTodos(),
 })
@@ -73,8 +73,8 @@ function DemoPrisma() {
 						<div className="absolute -inset-2 bg-linear-to-r from-indigo-500 via-teal-500 to-indigo-500 rounded-lg blur-lg opacity-60 group-hover:opacity-100 transition duration-500"></div>
 						<div className="relative bg-linear-to-br from-indigo-600 to-teal-600 p-3 rounded-lg">
 							<img
-								src="/prisma.svg"
-								alt="Prisma Logo"
+								src='/prisma.svg'
+								alt='Prisma Logo'
 								className="w-8 h-8 transform group-hover:scale-110 transition-transform duration-300"
 							/>
 						</div>
@@ -114,8 +114,8 @@ function DemoPrisma() {
 
 				<form onSubmit={handleSubmit} className="flex gap-2">
 					<input
-						type="text"
-						name="title"
+						type='text'
+						name='title'
 						placeholder="Add a new todo..."
 						className="flex-1 px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all text-white placeholder-indigo-300/50"
 						style={{
@@ -125,7 +125,7 @@ function DemoPrisma() {
 						}}
 					/>
 					<button
-						type="submit"
+						type='submit'
 						className="px-6 py-3 font-semibold rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105 active:scale-95 whitespace-nowrap"
 						style={{
 							background: 'linear-gradient(135deg, #5d67e3 0%, #8b5cf6 100%)',

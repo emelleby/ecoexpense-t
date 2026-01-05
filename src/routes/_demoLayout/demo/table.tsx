@@ -21,7 +21,7 @@ import React from 'react'
 import type { Person } from '@/data/demo-table-data'
 import { makeData } from '@/data/demo-table-data'
 
-export const Route = createFileRoute('/demo/table')({
+export const Route = createFileRoute('/_demoLayout/demo/table')({
 	component: TableDemo,
 })
 
@@ -158,7 +158,7 @@ function TableDemo() {
 										<th
 											key={header.id}
 											colSpan={header.colSpan}
-											className="px-4 py-3 text-left"
+											className='px-4 py-3 text-left'
 										>
 											{header.isPlaceholder ? null : (
 												<>
@@ -180,7 +180,7 @@ function TableDemo() {
 														}[header.column.getIsSorted() as string] ?? null}
 													</div>
 													{header.column.getCanFilter() ? (
-														<div className="mt-2">
+														<div className='mt-2'>
 															<Filter column={header.column} />
 														</div>
 													) : null}
@@ -255,7 +255,7 @@ function TableDemo() {
 				<span className="flex items-center gap-1">
 					| Go to page:
 					<input
-						type="number"
+						type='number'
 						defaultValue={table.getState().pagination.pageIndex + 1}
 						onChange={(e) => {
 							const page = e.target.value ? Number(e.target.value) - 1 : 0

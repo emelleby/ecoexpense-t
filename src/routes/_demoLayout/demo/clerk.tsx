@@ -1,0 +1,24 @@
+import { useUser } from '@clerk/clerk-react'
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/_demoLayout/demo/clerk')({
+	component: App,
+})
+
+function App() {
+	const { isSignedIn, user, isLoaded } = useUser()
+
+	if (!isLoaded) {
+		return <div className="p-4">Loading...</div>
+	}
+
+	if (!isSignedIn) {
+		return <div className="p-4">Sign in to view this page</div>
+	}
+
+	return (
+		<div className="p-4">
+			Hello! You are signed in as <b>{user.emailAddresses[0].emailAddress}</b>!
+		</div>
+	)
+}
