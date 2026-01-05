@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "vite run build",
+    "build": "bun --bun vite build",
     "preview": "vite run preview",
     "test": "vitest run",
     "format": "biome format",

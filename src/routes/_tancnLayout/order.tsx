@@ -21,7 +21,7 @@ import {
 import { useAppForm } from '@/components/ui/tanstack-form'
 import { orderFormSchema } from '@/lib/orderFormSchema'
 
-export const Route = createFileRoute('/tancn/form/order')({
+export const Route = createFileRoute('/_tancnLayout/order')({
 	component: OrderForm,
 })
 
@@ -127,7 +127,7 @@ export function OrderForm() {
 										<Input
 											name={'firstName'}
 											placeholder="Enter your first name"
-											type="text"
+											type='text'
 											value={(field.state.value as string | undefined) ?? ''}
 											onBlur={field.handleBlur}
 											onChange={(e) => field.handleChange(e.target.value)}
@@ -152,7 +152,7 @@ export function OrderForm() {
 										<Input
 											name={'lastName'}
 											placeholder="Enter your last name"
-											type="text"
+											type='text'
 											value={(field.state.value as string | undefined) ?? ''}
 											onBlur={field.handleBlur}
 											onChange={(e) => field.handleChange(e.target.value)}
@@ -178,7 +178,7 @@ export function OrderForm() {
 									<Input
 										name={'email'}
 										placeholder="Enter your email address"
-										type="email"
+										type='email'
 										value={(field.state.value as string | undefined) ?? ''}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -202,8 +202,8 @@ export function OrderForm() {
 									</field.FieldLabel>
 									<Input
 										name={'street_address'}
-										placeholder=""
-										type="text"
+										placeholder=''
+										type='text'
 										value={(field.state.value as string | undefined) ?? ''}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -226,8 +226,8 @@ export function OrderForm() {
 										<field.FieldLabel htmlFor={'city'}>City *</field.FieldLabel>
 										<Input
 											name={'city'}
-											placeholder=""
-											type="text"
+											placeholder=''
+											type='text'
 											value={(field.state.value as string | undefined) ?? ''}
 											onBlur={field.handleBlur}
 											onChange={(e) => field.handleChange(e.target.value)}
@@ -251,8 +251,8 @@ export function OrderForm() {
 										</field.FieldLabel>
 										<Input
 											name={'zip'}
-											placeholder=""
-											type="text"
+											placeholder=''
+											type='text'
 											value={(field.state.value as string | undefined) ?? ''}
 											onBlur={field.handleBlur}
 											onChange={(e) => field.handleChange(e.target.value)}
@@ -344,12 +344,12 @@ export function OrderForm() {
 					<div className="flex justify-end items-center w-full pt-3 gap-3">
 						{!isDefault && (
 							<orderForm.SubmitButton
-								type="button"
-								label="Reset"
-								variant="outline"
+								type='button'
+								label='Reset'
+								variant='outline'
 								onClick={() => orderForm.reset()}
-								className="rounded-lg"
-								size="sm"
+								className='rounded-lg'
+								size='sm'
 							/>
 						)}
 						<orderForm.SubmitButton label="Submit" />
