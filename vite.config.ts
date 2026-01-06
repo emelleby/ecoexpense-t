@@ -18,6 +18,11 @@ const config = defineConfig({
     tanstackStart(),
     viteReact(),
   ],
+  resolve: {
+    alias: {
+      cookie: 'cookie-es',
+    },
+  },
 })
 
 export default config
