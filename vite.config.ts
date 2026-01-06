@@ -23,6 +23,9 @@ const config = defineConfig({
       cookie: 'cookie-es',
     },
   },
+  server: {
+    allowedHosts: true,
+  },
 })
 
 export default config

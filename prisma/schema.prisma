@@ -7,8 +7,40 @@ datasource db {
   provider = "postgresql"
 }
 
+enum USER_STATUS {
+  ACTIVE
+  INACTIVE
+}
+
 model Todo {
   id        Int      @id @default(autoincrement())
   title     String
   createdAt DateTime @default(now())
+}
+
+model User {
+  id            Int         @id @default(autoincrement())
+  clerkId       String?     @unique @db.VarChar(100)
+  username      String      @unique @db.VarChar(64)
+  email         String      @unique @db.VarChar(120)
+  firstName     String?     @db.VarChar(100)
+  lastName      String?     @db.VarChar(50)
+  bankAccount   String?     @db.VarChar(50)
+  status        USER_STATUS @default(INACTIVE)
+  homeAddress   String?     @db.VarChar(255)
+  workAddress   String?     @db.VarChar(255)
+  homeLatitude  Float?
+  homeLongitude Float?
+  workLatitude  Float?
+  workLongitude Float?
+  // organizationId Int
+  // Organization   Organization @relation(fields: [organizationId], references: [id])
+  // Expense        Expense[]
+  // Trip           Trip[]
+  // Rates          Rate[]
+  // WorkEntry      WorkEntry[] // One-to-many relation to WorkEntry
+  // UserProject    Project[]    @relation("CreatedBy")
+  // WorkReport     WorkReport[]
+
+  @@index([username], name: "idx_user_username")
 }

@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TancnLayoutOrderRouteImport } from './routes/_tancnLayout/order'
 import { Route as DemoLayoutDemoIndexRouteImport } from './routes/_demoLayout/demo/index'
 import { Route as AppLayoutAppIndexRouteImport } from './routes/_appLayout/app/index'
+import { Route as ApiWebhooksClerkRouteImport } from './routes/api/webhooks/clerk'
 import { Route as DemoLayoutDemoTanstackQueryRouteImport } from './routes/_demoLayout/demo/tanstack-query'
 import { Route as DemoLayoutDemoTableRouteImport } from './routes/_demoLayout/demo/table'
 import { Route as DemoLayoutDemoStorybookRouteImport } from './routes/_demoLayout/demo/storybook'
@@ -59,6 +60,11 @@ const AppLayoutAppIndexRoute = AppLayoutAppIndexRouteImport.update({
   id: '/app/',
   path: '/app/',
   getParentRoute: () => AppLayoutRouteRoute,
+} as any)
+const ApiWebhooksClerkRoute = ApiWebhooksClerkRouteImport.update({
+  id: '/api/webhooks/clerk',
+  path: '/api/webhooks/clerk',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DemoLayoutDemoTanstackQueryRoute =
   DemoLayoutDemoTanstackQueryRouteImport.update({
@@ -160,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/demo/storybook': typeof DemoLayoutDemoStorybookRoute
   '/demo/table': typeof DemoLayoutDemoTableRoute
   '/demo/tanstack-query': typeof DemoLayoutDemoTanstackQueryRoute
+  '/api/webhooks/clerk': typeof ApiWebhooksClerkRoute
   '/app': typeof AppLayoutAppIndexRoute
   '/demo': typeof DemoLayoutDemoIndexRoute
   '/demo/api/names': typeof DemoLayoutDemoApiNamesRoute
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/demo/storybook': typeof DemoLayoutDemoStorybookRoute
   '/demo/table': typeof DemoLayoutDemoTableRoute
   '/demo/tanstack-query': typeof DemoLayoutDemoTanstackQueryRoute
+  '/api/webhooks/clerk': typeof ApiWebhooksClerkRoute
   '/app': typeof AppLayoutAppIndexRoute
   '/demo': typeof DemoLayoutDemoIndexRoute
   '/demo/api/names': typeof DemoLayoutDemoApiNamesRoute
@@ -207,6 +215,7 @@ export interface FileRoutesById {
   '/_demoLayout/demo/storybook': typeof DemoLayoutDemoStorybookRoute
   '/_demoLayout/demo/table': typeof DemoLayoutDemoTableRoute
   '/_demoLayout/demo/tanstack-query': typeof DemoLayoutDemoTanstackQueryRoute
+  '/api/webhooks/clerk': typeof ApiWebhooksClerkRoute
   '/_appLayout/app/': typeof AppLayoutAppIndexRoute
   '/_demoLayout/demo/': typeof DemoLayoutDemoIndexRoute
   '/_demoLayout/demo/api/names': typeof DemoLayoutDemoApiNamesRoute
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/api/webhooks/clerk'
     | '/app'
     | '/demo'
     | '/demo/api/names'
@@ -253,6 +263,7 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/api/webhooks/clerk'
     | '/app'
     | '/demo'
     | '/demo/api/names'
@@ -277,6 +288,7 @@ export interface FileRouteTypes {
     | '/_demoLayout/demo/storybook'
     | '/_demoLayout/demo/table'
     | '/_demoLayout/demo/tanstack-query'
+    | '/api/webhooks/clerk'
     | '/_appLayout/app/'
     | '/_demoLayout/demo/'
     | '/_demoLayout/demo/api/names'
@@ -296,6 +308,7 @@ export interface RootRouteChildren {
   AppLayoutRouteRoute: typeof AppLayoutRouteRouteWithChildren
   DemoLayoutRouteRoute: typeof DemoLayoutRouteRouteWithChildren
   TancnLayoutOrderRoute: typeof TancnLayoutOrderRoute
+  ApiWebhooksClerkRoute: typeof ApiWebhooksClerkRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -341,6 +354,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/app'
       preLoaderRoute: typeof AppLayoutAppIndexRouteImport
       parentRoute: typeof AppLayoutRouteRoute
+    }
+    '/api/webhooks/clerk': {
+      id: '/api/webhooks/clerk'
+      path: '/api/webhooks/clerk'
+      fullPath: '/api/webhooks/clerk'
+      preLoaderRoute: typeof ApiWebhooksClerkRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_demoLayout/demo/tanstack-query': {
       id: '/_demoLayout/demo/tanstack-query'
@@ -518,6 +538,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppLayoutRouteRoute: AppLayoutRouteRouteWithChildren,
   DemoLayoutRouteRoute: DemoLayoutRouteRouteWithChildren,
   TancnLayoutOrderRoute: TancnLayoutOrderRoute,
+  ApiWebhooksClerkRoute: ApiWebhooksClerkRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

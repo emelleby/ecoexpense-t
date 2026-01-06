@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Todo {\n  id        Int      @id @default(autoincrement())\n  title     String\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum USER_STATUS {\n  ACTIVE\n  INACTIVE\n}\n\nmodel Todo {\n  id        Int      @id @default(autoincrement())\n  title     String\n  createdAt DateTime @default(now())\n}\n\nmodel User {\n  id            Int         @id @default(autoincrement())\n  clerkId       String?     @unique @db.VarChar(100)\n  username      String      @unique @db.VarChar(64)\n  email         String      @unique @db.VarChar(120)\n  firstName     String?     @db.VarChar(100)\n  lastName      String?     @db.VarChar(50)\n  bankAccount   String?     @db.VarChar(50)\n  status        USER_STATUS @default(INACTIVE)\n  homeAddress   String?     @db.VarChar(255)\n  workAddress   String?     @db.VarChar(255)\n  homeLatitude  Float?\n  homeLongitude Float?\n  workLatitude  Float?\n  workLongitude Float?\n  // organizationId Int\n  // Organization   Organization @relation(fields: [organizationId], references: [id])\n  // Expense        Expense[]\n  // Trip           Trip[]\n  // Rates          Rate[]\n  // WorkEntry      WorkEntry[] // One-to-many relation to WorkEntry\n  // UserProject    Project[]    @relation(\"CreatedBy\")\n  // WorkReport     WorkReport[]\n\n  @@index([username], name: \"idx_user_username\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Todo\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Todo\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"clerkId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bankAccount\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"USER_STATUS\"},{\"name\":\"homeAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"workAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"homeLatitude\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"homeLongitude\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"workLatitude\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"workLongitude\",\"kind\":\"scalar\",\"type\":\"Float\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -183,6 +183,16 @@ export interface PrismaClient<
     * ```
     */
   get todo(): Prisma.TodoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
