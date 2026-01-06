@@ -1,6 +1,12 @@
 [build]
   command = "vite build"
   dir = "dist/client"
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "VITE_CLERK_PUBLISHABLE_KEY"
+  # or to ignore the entire built client folder:
+  # SECRETS_SCAN_OMIT_PATHS = "dist/client"
+
 [dev]
   command = "npm run dev"
   targetPort = 3000
