@@ -1,5 +1,8 @@
 // This is the layout file of the app
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
+
+import { auth } from '@clerk/tanstack-react-start/server'
+import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
+import { createServerFn } from '@tanstack/react-start'
 
 import { AppSidebar } from '@/components/app-sidebar'
 import {
@@ -17,11 +20,28 @@ import {
 	SidebarTrigger,
 } from '@/components/ui/sidebar'
 
+const authStateFn = createServerFn({ method: 'GET' }).handler(async () => {
+	const { isAuthenticated, userId } = await auth()
+
+	if (!isAuthenticated) {
+		throw redirect({
+			to: '/',
+		})
+	}
+
+	return { userId }
+})
+
 export const Route = createFileRoute('/_appLayout')({
 	component: RouteComponent,
+	beforeLoad: async () => await authStateFn(),
+	loader: async ({ context }) => {
+		return { userId: context.userId }
+	},
 })
 
 function RouteComponent() {
+	const state = Route.useLoaderData()
 	return (
 		<SidebarProvider>
 			<AppSidebar />
@@ -39,7 +59,7 @@ function RouteComponent() {
 								</BreadcrumbItem>
 								<BreadcrumbSeparator className="hidden md:block" />
 								<BreadcrumbItem>
-									<BreadcrumbPage>Data Fetching</BreadcrumbPage>
+									<BreadcrumbPage>Some route</BreadcrumbPage>
 								</BreadcrumbItem>
 							</BreadcrumbList>
 						</Breadcrumb>
